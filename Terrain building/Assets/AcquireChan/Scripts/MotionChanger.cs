@@ -118,7 +118,7 @@ public class MotionChanger : MonoBehaviour
 	 *	----------------------------------------------------------------------
 	 *	@brief	ボタン表示
 	*/
-	private void OnGUI()
+	/*private void OnGUI()
 	{
 		GUIStyle tempStyle = GUI.skin.box;
 		tempStyle.fontSize = 24;
@@ -143,7 +143,7 @@ public class MotionChanger : MonoBehaviour
 		{
 			NextAnimation();
 		}
-	}
+	}*/
 
 
 }
