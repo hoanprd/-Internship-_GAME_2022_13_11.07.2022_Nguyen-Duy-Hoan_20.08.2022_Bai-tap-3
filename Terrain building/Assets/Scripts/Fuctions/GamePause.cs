@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GamePause : MonoBehaviour
 {
+    public Behaviour UnityChanControlScriptWithRgidBody;
     public GameObject PausePanel;
 
     // Update is called once per frame
@@ -12,6 +13,7 @@ public class GamePause : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            UnityChanControlScriptWithRgidBody.enabled = false;
             PausePanel.SetActive(true);
         }
     }
@@ -19,6 +21,7 @@ public class GamePause : MonoBehaviour
     public void Resume()
     {
         PausePanel.SetActive(false);
+        UnityChanControlScriptWithRgidBody.enabled = true;
     }
 
     public void BackToMenu()

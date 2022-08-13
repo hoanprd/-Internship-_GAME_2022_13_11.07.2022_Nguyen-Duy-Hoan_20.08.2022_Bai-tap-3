@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BagController : MonoBehaviour
 {
+    public Behaviour UnityChanControlScriptWithRgidBody;
     public GameObject BagPanel;
     public Text GHT;
     public Text WT;
@@ -27,10 +28,12 @@ public class BagController : MonoBehaviour
     public int CP;
 
     public int dem;
+    public int move;
 
     void Start()
     {
         dem = 0;
+        move = 0;
     }
 
     // Update is called once per frame
@@ -57,11 +60,18 @@ public class BagController : MonoBehaviour
 
         if (dem % 2 != 0)
         {
+            move = 0;
+            UnityChanControlScriptWithRgidBody.enabled = false;
             BagPanel.SetActive(true);
         }
         else if (dem % 2 == 0)
         {
             BagPanel.SetActive(false);
+            if (move == 0)
+            {
+                UnityChanControlScriptWithRgidBody.enabled = true;
+                move = 1;
+            }
         }
     }
 }

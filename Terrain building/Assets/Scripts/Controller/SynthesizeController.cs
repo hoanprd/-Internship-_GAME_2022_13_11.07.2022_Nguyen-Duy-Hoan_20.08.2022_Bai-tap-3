@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SynthesizeController : MonoBehaviour
 {
+    public Behaviour UnityChanControlScriptWithRgidBody;
     public GameObject SynPanel;
     public GameObject Message;
     public Text MessageText;
@@ -15,12 +16,6 @@ public class SynthesizeController : MonoBehaviour
     public Text HST;
     public Text PT;
     public bool IsSyn;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,6 +29,7 @@ public class SynthesizeController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.F) && IsSyn == true)
         {
+            UnityChanControlScriptWithRgidBody.enabled = false;
             SynPanel.SetActive(true);
         }
     }
@@ -74,5 +70,6 @@ public class SynthesizeController : MonoBehaviour
     public void CloseSynPanel()
     {
         SynPanel.SetActive(false);
+        UnityChanControlScriptWithRgidBody.enabled = true;
     }
 }

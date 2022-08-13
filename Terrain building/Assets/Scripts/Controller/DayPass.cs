@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DayPass : MonoBehaviour
 {
@@ -50,10 +51,11 @@ public class DayPass : MonoBehaviour
 
     IEnumerator CloseSleep()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
 
         FadeOutSleep.GetComponent<Animator>().enabled = false;
         SleepTrigger.GetComponent<BoxCollider>().enabled = true;
         IsSleep = true;
+        SceneManager.LoadScene(2);
     }
 }
