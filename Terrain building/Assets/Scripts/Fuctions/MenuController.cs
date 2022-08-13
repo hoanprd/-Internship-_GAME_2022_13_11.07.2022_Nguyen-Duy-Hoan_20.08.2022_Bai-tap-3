@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    public GameObject SettingPanel;
+    public AudioSource ClickSound;
+
     public void NewGame()
     {
+        ClickSound.Play();
         StartCoroutine(PlayNewGame());
     }
 
@@ -14,13 +18,16 @@ public class MenuController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("SaveHave") == 1)
         {
+            ClickSound.Play();
             StartCoroutine(LoadCurGame());
         }
     }
 
     public void ResetGame()
     {
+        ClickSound.Play();
         PlayerPrefs.SetInt("SaveDayPass", 0);
+        PlayerPrefs.SetInt("SaveReputation", 0);
         PlayerPrefs.SetInt("SaveGH", 0);
         PlayerPrefs.SetInt("SaveW", 0);
         PlayerPrefs.SetInt("SavePW", 0);
@@ -34,17 +41,26 @@ public class MenuController : MonoBehaviour
 
     public void Setting()
     {
+        ClickSound.Play();
+        SettingPanel.SetActive(true);
+    }
 
+    public void CloseSettingPanel()
+    {
+        ClickSound.Play();
+        SettingPanel.SetActive(false);
     }
 
     public void ExitGame()
     {
+        ClickSound.Play();
         Application.Quit();
     }
 
     IEnumerator PlayNewGame()
     {
         DayPass.Days = 0;
+        QuestController.Reputation = 0;
         BagController.GrassHerb = 0;
         BagController.Wheat = 0;
         BagController.PureWater = 0;
@@ -60,6 +76,7 @@ public class MenuController : MonoBehaviour
     IEnumerator LoadCurGame()
     {
         DayPass.Days = PlayerPrefs.GetInt("SaveDayPass");
+        QuestController.Reputation = PlayerPrefs.GetInt("SaveReputation");
         BagController.GrassHerb = PlayerPrefs.GetInt("SaveGH");
         BagController.Wheat = PlayerPrefs.GetInt("SaveW");
         BagController.PureWater = PlayerPrefs.GetInt("SavePW");

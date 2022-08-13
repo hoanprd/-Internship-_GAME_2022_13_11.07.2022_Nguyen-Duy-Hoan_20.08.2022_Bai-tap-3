@@ -7,6 +7,7 @@ public class FPickUp : MonoBehaviour
 {
     public GameObject Message;
     public Text MessageText;
+    public AudioSource PickUpSound;
     public bool IsPick;
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class FPickUp : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.F) && IsPick == true)
         {
+            PickUpSound.Play();
             BagController.Fish += 1;
             Message.SetActive(false);
             Destroy(gameObject);

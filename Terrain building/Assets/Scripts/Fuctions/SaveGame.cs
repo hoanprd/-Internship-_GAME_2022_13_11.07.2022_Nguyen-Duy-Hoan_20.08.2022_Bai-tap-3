@@ -20,6 +20,7 @@ public class SaveGame : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F) && IsSave == true)
         {
             PlayerPrefs.SetInt("SaveDayPass", DayPass.Days);
+            PlayerPrefs.SetInt("SaveReputation", QuestController.Reputation);
             PlayerPrefs.SetInt("SaveGH", BagController.GrassHerb);
             PlayerPrefs.SetInt("SaveW", BagController.Wheat);
             PlayerPrefs.SetInt("SavePW", BagController.PureWater);

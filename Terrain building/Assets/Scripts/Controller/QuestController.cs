@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuestController : MonoBehaviour
 {
+    public Behaviour UnityChanControlScriptWithRgidBody;
     public GameObject QuestPanel;
     public GameObject Message;
     public Text MessageText;
+    public Text ReputationText;
     public GameObject CommitB1;
     public GameObject CommitB2;
     public GameObject Tick1;
     public GameObject Tick2;
+    public AudioSource CompleteSound;
+
+    public static int Reputation;
+    public int CReputation;
 
     public int[] CommitMaterials = new int[] {BagController.GrassHerb, BagController.Wheat, BagController.PureWater, BagController.Fish};
     public int[] CommitItems = new int[] {BagController.HealingSlayer, BagController.Porridge};
@@ -49,11 +56,19 @@ public class QuestController : MonoBehaviour
 
     void Update()
     {
+        CReputation = Reputation;
+        ReputationText.text = "Reputation: " + CReputation + "/20";
         CommitMaterials = new int[] { BagController.GrassHerb, BagController.Wheat, BagController.PureWater, BagController.Fish };
         CommitItems = new int[] { BagController.HealingSlayer, BagController.Porridge };
         if (Input.GetKeyUp(KeyCode.F) && IsQuest == true)
         {
+            UnityChanControlScriptWithRgidBody.enabled = false;
             QuestPanel.SetActive(true);
+        }
+
+        if (Reputation >= 20)
+        {
+            SceneManager.LoadScene(4);
         }
     }
 
@@ -61,9 +76,27 @@ public class QuestController : MonoBehaviour
     {
         for (int i = 0; i < CommitMaterials.Length; i++)
         {
-            if (i == RandM && CommitMaterials[i] > 0)
+            if (i == RandM && CommitMaterials[i] > 0 && Reputation < 20)
             {
+                CompleteSound.Play();
+                Reputation += 1;
                 CommitMaterials[i] -= 1;
+                if (i == 0)
+                {
+                    BagController.GrassHerb = CommitMaterials[i];
+                }
+                else if (i == 1)
+                {
+                    BagController.Wheat = CommitMaterials[i];
+                }
+                else if (i == 2)
+                {
+                    BagController.PureWater = CommitMaterials[i];
+                }
+                else if (i == 3)
+                {
+                    BagController.Fish = CommitMaterials[i];
+                }
                 CommitB1.SetActive(false);
                 Tick1.SetActive(true);
             }
@@ -74,9 +107,19 @@ public class QuestController : MonoBehaviour
     {
         for (int i = 0; i < CommitItems.Length; i++)
         {
-            if (i == RandI && CommitItems[i] > 0)
+            if (i == RandI && CommitItems[i] > 0 && Reputation < 20)
             {
+                CompleteSound.Play();
+                Reputation += 1;
                 CommitItems[i] -= 1;
+                if (i == 0)
+                {
+                    BagController.HealingSlayer = CommitItems[i];
+                }
+                else if (i == 1)
+                {
+                    BagController.Porridge = CommitItems[i];
+                }
                 CommitB2.SetActive(false);
                 Tick2.SetActive(true);
             }
@@ -86,6 +129,7 @@ public class QuestController : MonoBehaviour
     public void CloseQuestPanel()
     {
         QuestPanel.SetActive(false);
+        UnityChanControlScriptWithRgidBody.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -100,5 +144,10 @@ public class QuestController : MonoBehaviour
         Message.SetActive(false);
         MessageText.text = "Press 'F' to do quests";
         IsQuest = false;
+    }
+
+    void UpdateNumber()
+    {
+        
     }
 }

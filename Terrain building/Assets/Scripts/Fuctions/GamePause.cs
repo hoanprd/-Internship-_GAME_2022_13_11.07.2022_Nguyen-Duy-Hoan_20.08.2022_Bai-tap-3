@@ -8,11 +8,14 @@ public class GamePause : MonoBehaviour
     public Behaviour UnityChanControlScriptWithRgidBody;
     public GameObject PausePanel;
 
+    public AudioSource PauseSound;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.P))
         {
+            PauseSound.Play();
             UnityChanControlScriptWithRgidBody.enabled = false;
             PausePanel.SetActive(true);
         }
