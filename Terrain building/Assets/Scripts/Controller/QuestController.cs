@@ -20,7 +20,7 @@ public class QuestController : MonoBehaviour
     public static int Reputation;
     public int CReputation;
 
-    public int[] CommitMaterials = new int[] {BagController.GrassHerb, BagController.Wheat, BagController.PureWater, BagController.Fish};
+    public int[] CommitMaterials = new int[] {BagController.GrassHerb, BagController.Wheat, BagController.PureWater, BagController.Fish, BagController.Rock, BagController.Tephra};
     public int[] CommitItems = new int[] {BagController.HealingSlayer, BagController.Porridge};
 
     public GameObject[] MaterialsI;
@@ -35,8 +35,16 @@ public class QuestController : MonoBehaviour
     void Start()
     {
         IsQuest = false;
-        RandM = Random.Range(0, 4);
-        RandI = Random.Range(0, 2);
+        if (DayPass.Days < 7)
+        {
+            RandM = Random.Range(0, 4);
+            RandI = Random.Range(0, 2);
+        }
+        else
+        {
+            RandM = Random.Range(0, 6);
+            RandI = Random.Range(0, 2);
+        }
         for (int i = 0; i < CommitMaterials.Length; i++)
         {
             if (i == RandM)
@@ -97,6 +105,14 @@ public class QuestController : MonoBehaviour
                 {
                     BagController.Fish = CommitMaterials[i];
                 }
+                else if (i == 4)
+                {
+                    BagController.Rock = CommitMaterials[i];
+                }
+                else if (i == 5)
+                {
+                    BagController.Tephra = CommitMaterials[i];
+                }
                 CommitB1.SetActive(false);
                 Tick1.SetActive(true);
             }
@@ -144,10 +160,5 @@ public class QuestController : MonoBehaviour
         Message.SetActive(false);
         MessageText.text = "Press 'F' to do quests";
         IsQuest = false;
-    }
-
-    void UpdateNumber()
-    {
-        
     }
 }

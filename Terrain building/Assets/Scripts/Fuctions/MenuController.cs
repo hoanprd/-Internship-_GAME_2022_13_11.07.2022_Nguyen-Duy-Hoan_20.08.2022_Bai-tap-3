@@ -59,6 +59,7 @@ public class MenuController : MonoBehaviour
 
     IEnumerator PlayNewGame()
     {
+        Tutorials.HavePassT = 0;
         DayPass.Days = 0;
         QuestController.Reputation = 0;
         BagController.GrassHerb = 0;
@@ -75,6 +76,7 @@ public class MenuController : MonoBehaviour
 
     IEnumerator LoadCurGame()
     {
+        Tutorials.HavePassT = 1;
         DayPass.Days = PlayerPrefs.GetInt("SaveDayPass");
         QuestController.Reputation = PlayerPrefs.GetInt("SaveReputation");
         BagController.GrassHerb = PlayerPrefs.GetInt("SaveGH");

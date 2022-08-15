@@ -13,6 +13,8 @@ public class BagController : MonoBehaviour
     public Text FT;
     public Text HST;
     public Text PT;
+    public Text RT;
+    public Text TT;
 
     public static int GrassHerb;
     public int CGH;
@@ -22,6 +24,10 @@ public class BagController : MonoBehaviour
     public int CPW;
     public static int Fish;
     public int CF;
+    public static int Rock;
+    public int CR;
+    public static int Tephra;
+    public int CT;
     public static int HealingSlayer;
     public int CHS;
     public static int Porridge;
@@ -45,6 +51,8 @@ public class BagController : MonoBehaviour
         CF = Fish;
         CHS = HealingSlayer;
         CP = Porridge;
+        CR = Rock;
+        CT = Tephra;
 
         GHT.text = "" + CGH;
         WT.text = "" + CW;
@@ -52,6 +60,8 @@ public class BagController : MonoBehaviour
         FT.text = "" + CF;
         HST.text = "" + CHS;
         PT.text = "" + CP;
+        RT.text = "" + CR;
+        TT.text = "" + CT;
 
         if (Input.GetKeyUp(KeyCode.B))
         {
