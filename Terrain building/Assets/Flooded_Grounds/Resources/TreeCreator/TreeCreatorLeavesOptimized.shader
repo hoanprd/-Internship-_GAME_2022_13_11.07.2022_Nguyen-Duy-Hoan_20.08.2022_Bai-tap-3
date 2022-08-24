@@ -45,9 +45,10 @@ struct Input {
 //	half3 lightDir;
 };
 
-void surf (Input IN, inout SurfaceOutput o) {
+float _SnowLevel;
 
-	fixed4 c = tex2D(_MainTex, IN.uv_MainTex);	
+void surf (Input IN, inout SurfaceOutput o) {
+	fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
 	fixed4 trngls = tex2D(_TranslucencyMap, IN.uv_MainTex);	
 	
 	
