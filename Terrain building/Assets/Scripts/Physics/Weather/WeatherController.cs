@@ -23,6 +23,7 @@ public class WeatherController : MonoBehaviour
             Rain.SetActive(true);
             StopTimer = 60;
             IsRain = true;
+            Shader.SetGlobalFloat("_SnowLevel", 0f);
         }
         else if (state == 2 || state == 3)
         {
@@ -38,6 +39,10 @@ public class WeatherController : MonoBehaviour
                 else
                     FreezeWater[i].GetComponent<MeshCollider>().enabled = true;
             }
+        }
+        else
+        {
+            Shader.SetGlobalFloat("_SnowLevel", 0f);
         }
     }
 
