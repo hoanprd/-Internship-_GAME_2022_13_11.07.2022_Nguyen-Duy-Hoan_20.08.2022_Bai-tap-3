@@ -13,15 +13,18 @@ public class WeatherController : MonoBehaviour
     public bool IsRain;
     public bool IsSnow;
     public float StopTimer;
+    //public bool RainDebug;
+    //public bool SnowDebug;
 
     // Start is called before the first frame update
     void Start()
     {
+        Shader.SetGlobalFloat("_SnowLevel", 0f);
         state = Random.Range(0, 10);
         if (state == 0 || state == 1)
         {
             Rain.SetActive(true);
-            StopTimer = 60;
+            //StopTimer = 60;
             IsRain = true;
             Shader.SetGlobalFloat("_SnowLevel", 0f);
         }
@@ -39,10 +42,6 @@ public class WeatherController : MonoBehaviour
                 else
                     FreezeWater[i].GetComponent<MeshCollider>().enabled = true;
             }
-        }
-        else
-        {
-            Shader.SetGlobalFloat("_SnowLevel", 0f);
         }
     }
 
